@@ -2,8 +2,6 @@ package threaded_computation;
 
 public class ThreadedMethod extends Thread{
 
-	//I would be almost willing to bet I missed something here, it just seems like there's probably an edge case I missed somewhere but I can't find it
-	
 	static int cases;
 	static int num;
 	static int middle;
