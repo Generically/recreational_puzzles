@@ -10,7 +10,7 @@ public class ThreadedMethod extends Thread{
 	static int end;
 	long totalTime;
 	
-	public void main(String[] args) {
+	private void main() {
 		num = (int)(Math.random()*151);
 		if(num==0) {
 			middle = 19;
@@ -46,7 +46,7 @@ public class ThreadedMethod extends Thread{
 	}
 	
 	public void run() {
-		main(null);
+		main();
 		switch(cases) {
 		case 0: //case 0 is when swap odd
 			System.out.printf("Number = %d\nLeft two digits = %s\nRight two digits = %s\n%s > %s so swap\nNew number = %d\n%d is odd so swap leftmost digit (%d) with rightmost digit (%d)\nEnd value = %d\n\n", num+1900, (num+1900+"").substring(0, 2) , (1900+num+"").substring(2,4), (num+1900+"").substring(0, 2), (1900+num+"").substring(2,4), middle, middle, 9, num%10, end);
