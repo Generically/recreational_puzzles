@@ -9,3 +9,4 @@ DayEight - done<br>
 DayNine - done<br>
 
 most of this code is rushed and poorly written, have low expectations
+Util - not even remotely done, half of the functions dont even work as I had to leave my PC before finishing them
