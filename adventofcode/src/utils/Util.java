@@ -5,6 +5,16 @@ import java.util.Arrays;
 public class Util {
 
 	public class Strings{
+		public static String[] split(String str, String splitChar) {
+			int len = Util.Strings.stringCounter(str, splitChar);
+			String[] splitStrings = new String[len+1];
+			for(int i=0; i<len; i++) {
+				splitStrings[i] = str.substring(0,str.indexOf(splitChar));
+				str = str.substring(str.indexOf(splitChar)+splitChar.length());
+			}
+
+			return splitStrings;
+		}
 		
 		public static int stringCounter(String str, String chars) {
 			// takes in two strings and returns how many times chars occurs in str
@@ -170,6 +180,11 @@ public class Util {
 	}
 	
 	public class Maths{
+		// found out about this on stackOverFlow
+		public String baseConvertIntString(int num, int base) {
+		    return Integer.toString(num, base);
+		}
+		
 		public static int sumIntarr(int[] arr) {
 			int output = 0;
 			for (int i = 0; i < arr.length; i++) {
