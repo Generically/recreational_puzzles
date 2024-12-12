@@ -1,10 +1,56 @@
 package utils;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Util {
 
 	public class Strings{
+		
+		public static ArrayList<String> recur(ArrayList<ArrayList<String>> set, ArrayList<String> output, String str, int[] previous, boolean setting) {
+			if(setting) {
+				output.add(str);
+				//counterP.add(str);
+			}
+			int[] location = Util.Strings.strToIntarr(str);
+			//System.out.println(str);
+			try {
+				if(set.get(location[0]).get(location[1]).equals(set.get(location[0]+1).get(location[1])) && output.contains((location[0]+1+","+(location[1]))) == false ) {
+						recur(set, output, (location[0]+1)+","+location[1], location, setting);
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			try {
+				if(set.get(location[0]).get(location[1]).equals(set.get(location[0]-1).get(location[1])) && output.contains((location[0]-1+","+(location[1]))) == false) {
+						recur(set, output,(location[0]-1)+","+location[1], location, setting);
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			try {
+				if(set.get(location[0]).get(location[1]).equals(set.get(location[0]).get(location[1]+1)) && output.contains((location[0]+","+(location[1]+1))) == false) {
+						recur(set, output,location[0]+","+(location[1]+1), location, setting);
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			try {
+				if(set.get(location[0]).get(location[1]).equals(set.get(location[0]).get(location[1]-1)) && output.contains((location[0]+","+(location[1]-1))) == false) {
+						recur(set, output,location[0]+","+(location[1]-1), location, setting);
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return output;
+		}
+		
+		
 		public static String[] split(String str, String splitChar) {
 			int len = Util.Strings.stringCounter(str, splitChar);
 			String[] splitStrings = new String[len+1];
@@ -15,6 +61,7 @@ public class Util {
 
 			return splitStrings;
 		}
+
 		
 		public static int stringCounter(String str, String chars) {
 			// takes in two strings and returns how many times chars occurs in str
@@ -96,7 +143,7 @@ public class Util {
 		
 		public static int[] strToIntarr(String str) {
 			// string to int[]
-			String nums = "0123456789";
+			String nums = "0123456789-";
 			String tempStr = "";
 			int[] output = new int[0];
 			
@@ -177,11 +224,102 @@ public class Util {
 		}
 		return false;
 		}
+		
+		public static String intToStr(int[] list) {
+			String out = "";
+			for(int i = 0; i < list.length; i++) {
+				out+=list[i];
+				if(i < list.length-1) {
+					out+=",";
+				}
+			}
+			//out = out.
+			return out;
+		}
+		
+		public static boolean twoDArrayListContains(ArrayList<ArrayList<String>> list, String str) {
+			for(ArrayList<String> listerator : list) {//we want failfast
+				if(listerator.contains(str)) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 	
 	public class Maths{
+		public static ArrayList<String> perimiterFromPoints(ArrayList<String> points) {
+			ArrayList<Integer[]> P = new ArrayList<Integer[]>();
+			for(String i : points) {
+				P.add(new Integer[] {Util.Strings.strToIntarr(i)[0], Util.Strings.strToIntarr(i)[1]});
+			}
+			// P is the set of points in each garden
+			// i is each point of the garden
+			ArrayList<String> perm = new ArrayList<String>();
+				for(Integer[] i : P) {
+					if(!points.contains((i[0]+1)+","+(i[1]))) {
+						perm.add((i[0]+1)+","+(i[1])+",0");
+					}
+					if(!points.contains((i[0]-1)+","+(i[1]))) {
+						perm.add((i[0]-1)+","+(i[1])+",1");
+					}
+					if(!points.contains((i[0])+","+(i[1]+1))) {
+						perm.add((i[0])+","+(i[1]+1)+",2");
+					}
+					if(!points.contains((i[0])+","+(i[1]-1))) {
+						perm.add((i[0])+","+(i[1]-1)+",3");
+					}
+				}
+			return perm;
+		}
+		
+		// counter for the number of groups of objects with exist next to eachOther
+		public static int removeConnectingCounter(ArrayList<String> array) {
+			int index = 0;
+			int count = 0;
+			while(array.size()>0) {
+				int[] curr = Util.Strings.strToIntarr(array.get(0)); // if there exists a point next to the one im at which shares its direction
+				array.remove((curr[0])+","+(curr[1])+","+curr[2]);
+
+				
+				if(array.contains((curr[0]+1)+","+(curr[1])+","+curr[2])) {
+					array = removeConnecting(array, index);
+				}
+				if(array.contains((curr[0]-1)+","+(curr[1])+","+curr[2])) {
+					array = removeConnecting(array, index);
+				}
+				if(array.contains((curr[0])+","+(curr[1]+1)+","+curr[2])) {
+					array = removeConnecting(array, index);
+				}
+				if(array.contains((curr[0])+","+(curr[1]-1)+","+curr[2])) {
+					array = removeConnecting(array, index);
+				}
+				count++;
+			}
+			return count;
+		}
+		// removes groups from the array, a group is a set of elements which differ from each other by 1 in an orthogonal direction
+		public static ArrayList<String> removeConnecting(ArrayList<String> array, int index) {
+			int[] curr = Util.Strings.strToIntarr(array.get(index)); // if there exists a point next to the one im at which shares its direction
+			
+			array.remove((curr[0])+","+(curr[1])+","+curr[2]);
+			if(array.contains((curr[0]+1)+","+(curr[1])+","+curr[2])) {
+				array = removeConnecting(array, index);
+			}
+			if(array.contains((curr[0]-1)+","+(curr[1])+","+curr[2])) {
+				array = removeConnecting(array, index);
+			}
+			if(array.contains((curr[0])+","+(curr[1]+1)+","+curr[2])) {
+				array = removeConnecting(array, index);
+			}
+			if(array.contains((curr[0])+","+(curr[1]-1)+","+curr[2])) {
+				array = removeConnecting(array, index);
+			}
+			return array;
+		}
+		
 		// found out about this on stackOverFlow
-		public String baseConvertIntString(int num, int base) {
+		public static String baseConvertIntString(int num, int base) {
 		    return Integer.toString(num, base);
 		}
 		
@@ -214,6 +352,27 @@ public class Util {
 				}
 			}
 			return max;
+		}
+		
+		
+		// recursively goes through the HashMap and generates an ArrayList of the groups which exist in the graph (a group is defined as a set of keys which differ by 1 which share the same value)
+		public static ArrayList<String> recursiveGrouping(HashMap<String, String> set, String str, int[] previous, ArrayList<String> output) {
+			output.add(str);
+			int[] location = Util.Strings.strToIntarr(str);
+				if(set.get(location[0]+","+location[1]).equals(set.get((location[0]+1)+","+location[1])) && output.contains((location[0]+1+","+(location[1]))) == false ) {
+					output = (recursiveGrouping(set, (location[0]+1)+","+location[1], location, output));
+				}
+				if(set.get(location[0]+","+location[1]).equals(set.get((location[0]-1)+","+location[1])) && output.contains((location[0]-1+","+(location[1]))) == false) {
+					output = (recursiveGrouping(set, (location[0]-1)+","+location[1], location, output));
+				}
+				if(set.get(location[0]+","+location[1]).equals(set.get(location[0]+","+(location[1]+1))) && output.contains((location[0]+","+(location[1]+1))) == false) {
+					output = (recursiveGrouping(set, location[0]+","+(location[1]+1), location, output));
+				}
+				if(set.get(location[0]+","+location[1]).equals(set.get(location[0]+","+(location[1]-1))) && output.contains((location[0]+","+(location[1]-1))) == false) {
+					output = (recursiveGrouping(set, location[0]+","+(location[1]-1), location, output));
+				}
+			
+			return output;
 		}
 	}
 }
