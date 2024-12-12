@@ -14,5 +14,5 @@
 > to get output for part one change line 39 from <br> ```perimiter = discount(perimiterFromPoints);```<br> to <br>```perimiter = perimiterFromPoints.size();```<br>
 
 most of this code is rushed and poorly written, have low expectations<br>
-Util - not even remotely done, half of the functions dont even work as I had to leave my PC before finishing them
+Util - not even remotely done, half of the functions dont even work as I had to leave my PC before finishing them<br>
 Util updated with a recursive group finder for 2D HashMaps 12/12/24
