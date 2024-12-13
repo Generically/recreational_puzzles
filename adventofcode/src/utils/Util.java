@@ -1,4 +1,5 @@
 package utils;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -248,6 +249,19 @@ public class Util {
 	}
 	
 	public class Maths{
+		
+		public static double[] findIntersection(double a1, double b1, long c1, double a2, double b2, long c2) { //find intersect of two lines of equation ax+by=c
+			double determinant = a1 * b2 - a2 * b1;
+
+	        if (determinant == 0) {
+	            return null;
+	        }
+	        double x = (b2 * c1 - b1 * c2) / determinant;
+	        double y = (a1 * c2 - a2 * c1) / determinant;
+
+	        return new double[] {x,y};
+	    }
+		
 		public static ArrayList<String> perimiterFromPoints(ArrayList<String> points) {
 			ArrayList<Integer[]> P = new ArrayList<Integer[]>();
 			for(String i : points) {
