@@ -14,7 +14,8 @@
     > to get output for part one change line 39 from <br> ```    perimiter = discount(perimiterFromPoints);```<br> to <br> ```    perimiter = perimiterFromPoints.size();```<br>
 * DayThirteen - done
     > to get output for part one change line 8 from <br>```    static long addedVal = Long.parseLong("10000000000000");```<br> to <br> ```   static long addedVal = Long.parseLong("0");```<br>
-
+* DayFourteen - done
+    >  a rather poor solution to the problem, just outputting every possible output to a .txt file and then just using ctrl+f to find the tree
 <br>
 <h3>Util changelong</h3>
 * Util updated with a recursive group finder for 2D HashMaps 12/12/24<br>
