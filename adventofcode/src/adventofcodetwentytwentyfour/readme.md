@@ -16,6 +16,8 @@
     > to get output for part one change line 8 from <br>```    static long addedVal = Long.parseLong("10000000000000");```<br> to <br> ```   static long addedVal = Long.parseLong("0");```<br>
 * DayFourteen - done
     >  a rather poor solution to the problem, just outputting every possible output to a .txt file and then just using ctrl+f to find the tree
+* DayFifteen - done
+    > to get the partOne answer len/2 needs to be swapped with len in all occurrences and to swap the commented line from 7 to 8<br>I'm sure theres a better way to do this but I cant think of one, normally a better method is obvious once I get the first version working
 <br>
 <h3>Util changelong</h3>
 * Util updated with a recursive group finder for 2D HashMaps 12/12/24<br>
