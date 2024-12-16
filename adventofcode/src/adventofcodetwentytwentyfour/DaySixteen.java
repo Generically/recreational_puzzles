@@ -1,20 +1,3 @@
-//	public static void mazeSearch() {
-//		int[] location = Util.Strings.strToIntarr(str);
-//		if(set.get(location[0]+","+location[1]).equals(set.get((location[0]+1)+","+location[1])) && output.contains((location[0]+1+","+(location[1]))) == false ) {
-//			
-//		}
-//		if(set.get(location[0]+","+location[1]).equals(set.get((location[0]-1)+","+location[1])) && output.contains((location[0]-1+","+(location[1]))) == false) {
-//
-//		}
-//		if(set.get(location[0]+","+location[1]).equals(set.get(location[0]+","+(location[1]+1))) && output.contains((location[0]+","+(location[1]+1))) == false) {
-//
-//		}
-//		if(set.get(location[0]+","+location[1]).equals(set.get(location[0]+","+(location[1]-1))) && output.contains((location[0]+","+(location[1]-1))) == false) {
-//
-//		}
-//	}
-
-
 package adventofcodetwentytwentyfour;
 
 import java.io.File;
