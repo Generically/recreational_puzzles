@@ -3,6 +3,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Util {
 
@@ -229,7 +231,7 @@ public class Util {
 		public static String intToStr(int[] list) {
 			String out = "";
 			for(int i = 0; i < list.length; i++) {
-				out+=list[i];
+				out+=""+list[i];
 				if(i < list.length-1) {
 					out+=",";
 				}
@@ -249,6 +251,65 @@ public class Util {
 	}
 	
 	public class Maths{
+		
+		public static int orthogonalBFS(int[][] grid, int[] start, int[] end) {     
+	        int[][] dir = {{1,0},{0,1},{-1,0},{0,-1}};
+	        Queue<int[]> map =new LinkedList<>();
+	        int rMax = grid.length;
+	        int cMax = grid[0].length;
+	        
+	        if(grid[start[0]][start[1]]==1) return -1; 
+	        
+	        map.offer(new int[] {start[0],start[1],1});
+	        
+	        while(!map.isEmpty()){
+	            int[] location = map.poll();
+	            int r = location[0];
+	            int c = location[1];
+	            int distance = location[2];
+	            if(r==end[0] && c==end[1]) return distance;
+	            
+	            for(int[] d : dir){
+	                int r2 = r + d[0];
+	                int c2 = c + d[1];
+	                if(r2<rMax && r2>=0 && c2<cMax && c2>=0 && grid[r2][c2]==0){
+	                    map.offer(new int[] {r2,c2,distance+1});
+	                    grid[r2][c2] = 8;
+	                }
+	            }
+	        }
+	        return -1;
+	    }
+		
+		
+		public int BFS(int[][] grid, int[] start, int[] end) {     
+	        int[][] dir = {{1,0},{0,1},{-1,0},{0,-1},{1,1},{-1,1},{1,-1},{-1,-1}};
+	        Queue<int[]> map =new LinkedList<>();
+	        int rMax = grid.length;
+	        int cMax = grid[0].length;
+	        
+	        if(grid[start[0]][start[1]]==1) return -1; 
+	        
+	        map.offer(new int[] {start[0],start[1],1});
+	        
+	        while(!map.isEmpty()){
+	            int[] location = map.poll();
+	            int r = location[0];
+	            int c = location[1];
+	            int distance = location[2];
+	            if(r==end[0] && c==end[1]) return distance;
+	            
+	            for(int[] d : dir){
+	                int r2 = r + d[0];
+	                int c2 = c + d[1];
+	                if(r2<rMax && r2>=0 && c2<cMax && c2>=0 && grid[r2][c2]==0){
+	                    map.offer(new int[] {r2,c2,distance+1});
+	                    grid[r2][c2] = 8;
+	                }
+	            }
+	        }
+	        return -1;
+	    }
 		
 		public static double[] findIntersection(double a1, double b1, long c1, double a2, double b2, long c2) { //find intersect of two lines of equation ax+by=c
 			double determinant = a1 * b2 - a2 * b1;
