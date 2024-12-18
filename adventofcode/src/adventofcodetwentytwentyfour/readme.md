@@ -23,6 +23,8 @@
 * DaySeventeen - done
     > part 1 should be a general solution<br>
     > part 2 will probably only work for my input as it was made by analyzing my program input by hand to find a pattern and then making a (slightly brute force) search using that pattern
+* DayEighteen - done
+    > not really a point posting the code for this one, the entire puzzle is just implement standard BFS
 <br>
 <h3>Util changelong</h3>
 * Util updated with a recursive group finder for 2D HashMaps 12/12/24<br>
