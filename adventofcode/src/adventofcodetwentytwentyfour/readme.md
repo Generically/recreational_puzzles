@@ -28,4 +28,5 @@
 <br>
 <h3>Util changelong</h3>
 * Util updated with a recursive group finder for 2D HashMaps 12/12/24<br>
-* Util updated with a formula for finding line intersections of form ax+by=c 13/12/24
+* Util updated with a formula for finding line intersections of form ax+by=c 13/12/24<br>
+* Util updated with BFS and orthogonal BFS<br>
