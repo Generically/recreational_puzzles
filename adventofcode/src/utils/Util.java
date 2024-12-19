@@ -9,6 +9,31 @@ import java.util.Queue;
 public class Util {
 
 	public class Strings{
+		static HashMap<String, Long> map = new HashMap<String, Long>();
+		static ArrayList<String> patters = new ArrayList<String>();
+		@SuppressWarnings("unchecked")
+		public static Long possiblePatterns(String design, ArrayList<String> patts) {
+			patters = (ArrayList<String>) patts.clone();
+			return recurPossiblePatterns(design);		
+		}
+		public static Long recurPossiblePatterns(String design) { 
+			long counter = 0;
+			for(String s : patters) {
+				if(design.equals("")) {
+					return 1L;
+				}
+				if(design.indexOf(s) == 0) {
+					if(map.containsKey(design)) {
+						return map.get(design);
+					}
+					else {
+						counter += recurPossiblePatterns(design.replaceFirst(s, ""));
+					}
+				}
+			}
+			map.putIfAbsent(design, counter);
+			return counter;
+		}
 		
 		public static ArrayList<String> recur(ArrayList<ArrayList<String>> set, ArrayList<String> output, String str, int[] previous, boolean setting) {
 			if(setting) {
