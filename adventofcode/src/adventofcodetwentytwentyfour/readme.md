@@ -28,6 +28,9 @@
     > Posted anyways incase someone wants to look at all 6 lines of code it took to solve the puzzle
 * DayNineteen - done
     > an easy day, only around 30 LOC
+* DayTwenty - done
+    > for part 1 solution change max depth of 20 when skipping walls to max length of 2<br>
+    > this solution is absurdly inefficient, could be sped up several hundred times by only computing BFS once and then just calculating the distance each point is away from the start and end with a couple lines of basic algebra
 <br>
 <h3>Util changelong</h3>
 * Util updated with a recursive group finder for 2D HashMaps 12/12/24<br>
